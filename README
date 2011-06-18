@@ -9,3 +9,9 @@ To use:
 4. cd some-target-folder
 
 5. redo app
+
+6. Customize the build by adding a "foo.defines" file alongside your "foo.cpp" file. Put "BAR" inside it.
+
+6. redo -x foo.o
+
+7. Notice it compiled with -DBAR.
