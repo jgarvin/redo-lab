@@ -17,3 +17,13 @@ To use:
 7. Notice it compiled with -DBAR.
 
 Note that step #4 is only necessary if the longest common prefix between your source folder and your target folder is a place you don't have permission to write to. If you're not making your sandbox a subdirectory there's a good chance this is the case. Redo is going to be modified in the future to only put its tracking files in folders that actually contain output files, so this hiccup should go away in the future.
+
+I think in the future instead of .define files, you will be able to have target specific .do scripts that can invoke a bunch of different utilities. I imagine something like this for foo.o:
+
+# Bring utilities into path
+. ../import-scripts
+add-define BAR
+no-optimization
+compile
+
+add-define and no-optimization would be compiler-portable commands to adjust the compilation of that specific file, and the compile command would use the options specified by previously executed commands just within that .do script.
