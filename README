@@ -1,0 +1,11 @@
+To use:
+
+1. Make a folder.
+
+2. Put some .cpp files inside it.
+
+3. From that folder, invoke: redo-lab/bin/make-sandbox some-target-folder
+
+4. cd some-target-folder
+
+5. redo app
