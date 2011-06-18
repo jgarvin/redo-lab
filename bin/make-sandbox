@@ -9,6 +9,8 @@ install -C -D --mode=444 `dirname $0`/../deps/*.do $1/deps
 
 # Merge any dependency scripts the user has added
 # TODO: deps in subdirectories? multiple targets in general?
+# TODO: Shouldn't clobber everytime, will thrash mtime between
+# builtin scripts and user scripts.
 if [ -d deps ]; then
     user_deps=$(find deps -name '*.do')
     if [ ! "$user_deps" = "" ]; then

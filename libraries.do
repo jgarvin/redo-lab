@@ -1,4 +1,4 @@
-source_dir=$(cat $(dirname $0)/source-tree)
+read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
 if [ ! -f $source_dir/requires ]; then
@@ -8,7 +8,7 @@ if [ ! -f $source_dir/requires ]; then
 fi
 
 redo-ifchange $source_dir/requires
-requires=$(cat $source_dir/requires)
+read requires < $source_dir/requires
 
 lib_scripts=""
 for i in $requires; do
@@ -29,4 +29,3 @@ done
 # TODO: Need to use newlines instead of spaces
 # for sort to matter
 echo $libs | sort -u | tee >(redo-stamp)
-

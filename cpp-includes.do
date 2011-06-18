@@ -1,4 +1,4 @@
-source_dir=$(cat $(dirname $0)/source-tree)
+read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
 if [ -d $source_dir/include ]; then
@@ -15,7 +15,7 @@ if [ ! -f $source_dir/requires ]; then
 fi
 
 redo-ifchange $source_dir/requires
-requires=$(cat $source_dir/requires)
+read requires < $source_dir/requires
 
 header_scripts=""
 for i in $requires; do

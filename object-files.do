@@ -1,6 +1,6 @@
 input_dir=.
 
-source_dir=$(cat $(dirname $0)/source-tree)
+read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
 old_pwd=$PWD

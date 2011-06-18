@@ -1,4 +1,4 @@
-source_dir=$(cat $(dirname $0)/source-tree)
+read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
 # Don't depend on any details of the cpp-compiler, YET.
@@ -15,13 +15,18 @@ else
     redo-ifcreate $source_dir/preprocessor-defines
 fi
 
-redo-ifchange $output_dir/cpp-includes $output_dir/libraries
+global_includes_file=$output_dir/cpp-includes
+global_libraries_file=$output_dir/libraries
 
-for i in $(cat $output_dir/cpp-includes); do
+redo-ifchange $global_includes_filex $global_libraries_file
+
+read includes < $global_includes_file
+for i in $includes; do
     options="$options -I$i"
 done
 
-for i in $(cat $output_dir/libraries); do
+read libraries < $global_libraries_file
+for i in $libraries; do
     options="$options -l$i"
 done
 
