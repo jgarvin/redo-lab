@@ -16,4 +16,4 @@ To use:
 
 7. Notice it compiled with -DBAR.
 
-Note that step #4 is only necessary if the longest common prefix between your source folder and your target folder is a place you don't have permission to write to. If you're not make your sandbox a subdirectory there's a good chance this is the case. Redo is going to be modified in the future to only put its tracking files in folders that actually contain output files, so this hiccup should go away in the future.
+Note that step #4 is only necessary if the longest common prefix between your source folder and your target folder is a place you don't have permission to write to. If you're not making your sandbox a subdirectory there's a good chance this is the case. Redo is going to be modified in the future to only put its tracking files in folders that actually contain output files, so this hiccup should go away in the future.
