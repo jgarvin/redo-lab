@@ -3,13 +3,21 @@
 mkdir -p $1
 install -C -D --mode=444 `dirname $0`/../*.do $1
 
-# TODO: Merge in deps from source folder
+# Copy the standard dependency scripts
 mkdir -p $1/deps
 install -C -D --mode=444 `dirname $0`/../deps/*.do $1/deps
+
+# Merge any dependency scripts the user has added
+# TODO: deps in subdirectories? multiple targets in general?
+if [ -d deps ]; then
+    user_deps=$(find deps -name '*.do')
+    if [ ! "$user_deps" = "" ]; then
+        install -C -D --mode=444 $user_deps $1/deps
+    fi
+fi
 
 source_tree_dir=`mktemp -d`
 echo $PWD > $source_tree_dir/source-tree
 
 install -C -D --mode=444 $source_tree_dir/source-tree $1
 rm -r $source_tree_dir
-
