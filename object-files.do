@@ -1,5 +1,3 @@
-input_dir=.
-
 read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
@@ -11,12 +9,12 @@ cd $old_pwd
 
 for s in $sources
 do
-    extless=$(basename $s | awk -F. '{ print $(NF-1) }')
+    extless=${s%.*}
 
     # TODO: Is this the right place to do this?
-    mkdir -p "$output_dir"/$(dirname $s)
+    mkdir -p $(dirname $s)
 
-    object_files="$object_files "$output_dir"/$(dirname $s)/$extless.o"
+    object_files="$object_files $extless.o"
 done
 
 echo $object_files | sort -u | tee >(redo-stamp)
