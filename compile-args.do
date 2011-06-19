@@ -18,7 +18,7 @@ fi
 global_includes_file=$output_dir/cpp-includes
 global_libraries_file=$output_dir/libraries
 
-redo-ifchange $global_includes_filex $global_libraries_file
+redo-ifchange $global_includes_file $global_libraries_file
 
 read includes < $global_includes_file
 for i in $includes; do
