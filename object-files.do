@@ -1,15 +1,12 @@
 read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
-old_pwd=$PWD
-
-cd "$source_dir"
-sources=`find . -name '*.cpp'`
-cd $old_pwd
+sources=`find $source_dir -name '*.cpp'`
 
 for s in $sources
 do
-    extless=${s%.*}
+    relative_loc=./${s#$source_dir}
+    extless=${relative_loc%.*}
 
     # TODO: Is this the right place to do this?
     mkdir -p $(dirname $s)
