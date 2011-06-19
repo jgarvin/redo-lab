@@ -1,5 +1,4 @@
 read source_dir < $(dirname $0)/source-tree
-output_dir=$(dirname $0)
 
 sources=`find $source_dir -iname '*.cpp'`
 

@@ -1,16 +1,12 @@
 read source_dir < $(dirname $0)/source-tree
-output_dir=$(dirname $0)
 
 mkdir -p $(dirname $1)
 
-compile_args_file="$output_dir"/compile-args
-compiler_file="$output_dir"/cpp-compiler
+redo-ifchange $compiler_file compile-args \
+    $source_file cpp-includes
 
-redo-ifchange $compiler_file $compile_args_file \
-    $source_file "$output_dir"/cpp-includes
-
-read compile_args < $compile_args_file
-read compiler < $compiler_file
+read compile_args < ./compile-args
+read compiler < ./cpp-compiler
 
 source_file="$source_dir"/$1.cpp
 

@@ -1,5 +1,4 @@
 read source_dir < $(dirname $0)/source-tree
-output_dir=$(dirname $0)
 
 if [ ! -f "$source_dir"/requires ]; then
     echo
@@ -12,10 +11,10 @@ read requires < "$source_dir"/requires
 
 lib_scripts=""
 for i in $requires; do
-    if [ -f "$output_dir"/deps/$i-libraries.do ]; then
-	    lib_scripts="$lib_scripts "$output_dir"/deps/$i-libraries"
+    if [ -f deps/$i-libraries.do ]; then
+	    lib_scripts="$lib_scripts deps/$i-libraries"
     else
-	    redo-ifcreate "$output_dir"/deps/$i-libraries.do
+	    redo-ifcreate deps/$i-libraries.do
     fi
 done
 
@@ -23,7 +22,7 @@ redo-ifchange $lib_scripts
 
 libs=""
 for i in $lib_scripts; do
-    libs="$libs $(cat "$output_dir"/$i)"
+    libs="$libs $(cat $i)"
 done
 
 # TODO: Need to use newlines instead of spaces

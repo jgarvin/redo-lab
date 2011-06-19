@@ -1,5 +1,4 @@
 read source_dir < $(dirname $0)/source-tree
-output_dir=$(dirname $0)
 
 if [ -d "$source_dir"/include ]; then
     echo "$source_dir"/include | tee >(redo-stamp)
@@ -18,10 +17,10 @@ read requires < "$source_dir"/requires
 
 header_scripts=""
 for i in $requires; do
-    if [ -f "$output_dir"/deps/$i-headers.do ]; then
+    if [ -f deps/$i-headers.do ]; then
 	header_scripts="$header_scripts deps/$i-headers"
     else
-	redo-ifcreate "$output_dir"/deps/$i-headers.do
+	redo-ifcreate deps/$i-headers.do
     fi
 done
 
@@ -29,7 +28,7 @@ redo-ifchange $header_scripts
 
 headers=""
 for i in $header_scripts; do
-    headers="$headers $(cat "$output_dir"/$i)"
+    headers="$headers $(cat $i)"
 done
 
 # TODO: Need to use newlines instead of spaces
