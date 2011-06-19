@@ -6,7 +6,6 @@ if [ -d "$source_dir"/include ]; then
 else
     # TODO: Does redo-ifcreate work for directories?
     redo-ifcreate "$source_dir"/include
-    exit 0
 fi
 
 if [ ! -f "$source_dir"/requires ]; then
@@ -20,7 +19,7 @@ read requires < "$source_dir"/requires
 header_scripts=""
 for i in $requires; do
     if [ -f "$output_dir"/deps/$i-headers.do ]; then
-	header_scripts="$header_scripts "$output_dir"/deps/$i-headers"
+	header_scripts="$header_scripts deps/$i-headers"
     else
 	redo-ifcreate "$output_dir"/deps/$i-headers.do
     fi

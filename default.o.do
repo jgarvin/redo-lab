@@ -15,7 +15,7 @@ read compiler < $compiler_file
 source_file="$source_dir"/$1.cpp
 
 file_specific_options=""
-specific_define_file="$source_dir"/$(dirname $1)/$(basename $1).preprocessor-defines >&2
+specific_define_file="$source_dir"/${1%.o}.preprocessor-defines
 if [ -f $specific_define_file ]; then
     redo-ifchange $specific_define_file
     for i in $(cat $specific_define_file); do
