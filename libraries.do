@@ -23,7 +23,7 @@ redo-ifchange $lib_scripts
 
 libs=""
 for i in $lib_scripts; do
-    libs="$libs $(cat $output_dir/${i%.do})"
+    libs="$libs $(cat $output_dir/$i)"
 done
 
 # TODO: Need to use newlines instead of spaces
