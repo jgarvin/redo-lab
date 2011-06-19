@@ -6,7 +6,7 @@ output_dir=$(dirname $0)
 
 for w in o d
 do
-    rm -f $(find $output_dir -name '*.'$w)
+    rm -f $(find "$output_dir" -name '*.'$w)
 done
 
 rm -f compile-args cpp-includes env-compile-args \

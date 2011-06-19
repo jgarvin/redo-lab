@@ -2,21 +2,21 @@ read source_dir < $(dirname $0)/source-tree
 output_dir=$(dirname $0)
 
 # Don't depend on any details of the cpp-compiler, YET.
-redo-ifchange $output_dir/cpp-compiler $output_dir/env-compile-args
+redo-ifchange "$output_dir"/cpp-compiler "$output_dir"/env-compile-args
 
-options="$options $(cat $output_dir/env-compile-args)"
+options="$options $(cat "$output_dir"/env-compile-args)"
 
-if [ -f $source_dir/preprocessor-defines ]; then
-    redo-ifchange $source_dir/preprocessor-defines
-    for i in $(cat $source_dir/preprocessor-defines); do
+if [ -f "$source_dir"/preprocessor-defines ]; then
+    redo-ifchange "$source_dir"/preprocessor-defines
+    for i in $(cat "$source_dir"/preprocessor-defines); do
         options="$options -D$i"
     done
 else
-    redo-ifcreate $source_dir/preprocessor-defines
+    redo-ifcreate "$source_dir"/preprocessor-defines
 fi
 
-global_includes_file=$output_dir/cpp-includes
-global_libraries_file=$output_dir/libraries
+global_includes_file="$output_dir"/cpp-includes
+global_libraries_file="$output_dir"/libraries
 
 redo-ifchange $global_includes_file $global_libraries_file
 
