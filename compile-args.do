@@ -6,7 +6,7 @@ redo-ifchange $output_dir/cpp-compiler $output_dir/env-compile-args
 
 options="$options $(cat $output_dir/env-compile-args)"
 
-if [ -f $source_dir/$(dirname $1)/preprocessor-defines ]; then
+if [ -f $source_dir/preprocessor-defines ]; then
     redo-ifchange $source_dir/preprocessor-defines
     for i in $(cat $source_dir/preprocessor-defines); do
         options="$options -D$i"
