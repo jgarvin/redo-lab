@@ -2,19 +2,21 @@ To use:
 
 1. Make a folder.
 
-2. Put some .cpp files inside it.
+2. Put some .cpp files inside the-folder/src
 
-3. From that folder, invoke: redo-lab/bin/make-sandbox some-target-folder
+3. touch the-folder/bin/appname.target
 
-4. cd some-target-folder
+4. From that folder, invoke: redo-lab/bin/make-sandbox some-target-folder
 
-5. redo app
+5. cd some-target-folder
 
-6. Customize the build by adding a "foo.defines" file alongside your "foo.cpp" file. Put "BAR" inside it.
+6. redo appname
 
-6. redo -x foo.o
+7. Customize the build by adding a "foo.defines" file alongside your "foo.cpp" file. Put "BAR" inside it.
 
-7. Notice it compiled with -DBAR.
+8. redo -x foo.o
+
+9. Notice it compiled with -DBAR.
 
 Note that step #4 is only necessary if the longest common prefix between your source folder and your target folder is a place you don't have permission to write to. If you're not making your sandbox a subdirectory there's a good chance this is the case. Redo is going to be modified in the future to only put its tracking files in folders that actually contain output files, so this hiccup should go away in the future.
 
