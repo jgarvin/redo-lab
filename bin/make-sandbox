@@ -18,8 +18,4 @@ if [ -d deps ]; then
     fi
 fi
 
-source_tree_dir=`mktemp -d`
-echo $PWD > $source_tree_dir/source-tree
-
-install -C -D --mode=444 $source_tree_dir/source-tree $1
-rm -r $source_tree_dir
+ln -sf -T $PWD $1/source-tree

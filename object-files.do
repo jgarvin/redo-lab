@@ -1,10 +1,8 @@
-read source_dir < $(dirname $0)/source-tree
-
-sources=`find $source_dir -iname '*.cpp'`
+sources=`find -L source-tree -iname '*.cpp'`
 
 for s in $sources
 do
-    relative_loc=./${s#$source_dir}
+    relative_loc=./${s#source-tree}
     extless=${relative_loc%.*}
 
     # TODO: Is this the right place to do this?

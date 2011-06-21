@@ -1,5 +1,3 @@
-read source_dir < $(dirname $0)/source-tree
-
 mkdir -p $(dirname $1)
 
 redo-ifchange $compiler_file compile-args \
@@ -8,10 +6,10 @@ redo-ifchange $compiler_file compile-args \
 read compile_args < ./compile-args
 read compiler < ./cpp-compiler
 
-source_file="$source_dir"/$1.cpp
+source_file=source-tree/$1.cpp
 
 file_specific_options=""
-specific_define_file="$source_dir"/${1%.o}.preprocessor-defines
+specific_define_file=source-tree/${1%.o}.preprocessor-defines
 if [ -f $specific_define_file ]; then
     redo-ifchange $specific_define_file
     for i in $(cat $specific_define_file); do

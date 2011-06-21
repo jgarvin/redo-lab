@@ -1,13 +1,11 @@
-read source_dir < $(dirname $0)/source-tree
-
-if [ ! -f "$source_dir"/requires ]; then
+if [ ! -f source-tree/requires ]; then
     echo
-    redo-ifcreate "$source_dir"/requires
+    redo-ifcreate source-tree/requires
     exit 0
 fi
 
-redo-ifchange "$source_dir"/requires
-read requires < "$source_dir"/requires
+redo-ifchange source-tree/requires
+read requires < source-tree/requires
 
 lib_scripts=""
 for i in $requires; do
