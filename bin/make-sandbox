@@ -1,11 +1,24 @@
 #!/bin/sh
 
+install_command='install -C -D --mode=444'
+
+# Copy standard scripts
 mkdir -p $1
-install -C -D --mode=444 `dirname $0`/../*.do $1
+$install_command `dirname $0`/../*.do $1
 
 # Copy the standard dependency scripts
 mkdir -p $1/deps
-install -C -D --mode=444 `dirname $0`/../deps/*.do $1/deps
+$install_command `dirname $0`/../deps/*.do $1/deps
+
+# Copy .do scripts from the project
+# TODO: Patching them is a use case for redo generating
+# .do scripts?
+# TODO: Shouldn't clobber everytime, will thrash mtime between
+# builtin scripts and user scripts.
+for i in $(find . -name '*.do'); do
+    mkdir -p $1/$(dirname $i)
+    $install_command $i $1/$(dirname $i)
+done
 
 # Merge any dependency scripts the user has added
 # TODO: deps in subdirectories? multiple targets in general?
@@ -14,7 +27,7 @@ install -C -D --mode=444 `dirname $0`/../deps/*.do $1/deps
 if [ -d deps ]; then
     user_deps=$(find deps -name '*.do')
     if [ ! "$user_deps" = "" ]; then
-        install -C -D --mode=444 $user_deps $1/deps
+        $install_command $user_deps $1/deps
     fi
 fi
 

@@ -1,5 +1,5 @@
 # TODO: This is inefficient, we want one find invocation.
-for w in o d
+for w in o d pyc
 do
     rm -f $(find . -name '*.'$w)
 done
