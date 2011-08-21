@@ -8,6 +8,8 @@ if [ -f source-tree/$1$2.cog ]; then
     python_path=""
     while [ ! "$target_dir" = "$old_target_dir" ]; do
 	if [ -d $target_dir/cog-recipes ]; then
+		recipe_files=$(find $target_dir/cog-recipes -name '*.py' ! -name '.*')
+		redo-ifchange $recipe_files
 	    python_path="$target_dir/cog-recipes:$python_path"
 	fi
 
