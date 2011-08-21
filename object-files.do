@@ -1,4 +1,4 @@
-sources=`find -H source-tree -iname '*.cpp'`
+sources=`find -H source-tree -iname '*.cpp' ! -name '.*'`
 
 for s in $sources
 do

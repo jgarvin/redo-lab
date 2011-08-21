@@ -15,7 +15,7 @@ $install_command `dirname $0`/../deps/*.do $1/deps
 # .do scripts?
 # TODO: Shouldn't clobber everytime, will thrash mtime between
 # builtin scripts and user scripts.
-for i in $(find . -name '*.do'); do
+for i in $(find . -name '*.do' ! -name '.*'); do
     mkdir -p $1/$(dirname $i)
     $install_command $i $1/$(dirname $i)
 done
@@ -25,7 +25,7 @@ done
 # TODO: Shouldn't clobber everytime, will thrash mtime between
 # builtin scripts and user scripts.
 if [ -d deps ]; then
-    user_deps=$(find deps -name '*.do')
+    user_deps=$(find deps -name '*.do' ! -name '.*')
     if [ ! "$user_deps" = "" ]; then
         $install_command $user_deps $1/deps
     fi
